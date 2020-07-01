@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace ConsoleAppExercicio
+{
+    class Funcionario:Pessoa
+    {
+        #region Propriedades
+        public decimal Salario { get; set; }
+        #endregion
+        #region Métodos
+        public override void PedirDados()
+        {
+            base.PedirDados();
+            Console.WriteLine("Qual é o Salario?");
+            string s;
+            do { s = Console.ReadLine(); }
+            while (!validarSalario(s));
+            Salario = decimal.Parse(s);
+        }
+        public override void MostrarDados()
+        {
+            base.MostrarDados();
+            Console.WriteLine($"Salario: {Salario}");
+        }
+        public bool validarSalario(string s)
+        {
+            Regex regex = new Regex(@"\d{1,8}(\.\d{1,4})?");
+            MatchCollection matches = regex.Matches(s);
+            if (matches.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Insira o valor do Salario em formato xxxx.xx");
+            }
+            return false;
+        }
+        #endregion
+    }
+}
