@@ -6,7 +6,8 @@ namespace ConsoleAppExercicio
 {
     class Formador:Funcionario
     {
-        //#region Propriedades
+        #region Propriedades
+        public static List<Formador> formadores = new List<Formador>();
         //public string Nome { get; set; }
         //public string Morada { get; set; }
         //public int CodigoPostal { get; set; }
@@ -19,8 +20,8 @@ namespace ConsoleAppExercicio
         //}
         //public string Curso { get; set; }
         //public decimal Propina { get; set; }
-        //#endregion
-        //#region Métodos
+        #endregion
+        #region Métodos
         //public void PedirDados()
         //{
         //    Console.WriteLine("Qual é o Nome?");
@@ -57,6 +58,29 @@ namespace ConsoleAppExercicio
         //    Console.WriteLine($"Curso: {Curso}");
         //    Console.WriteLine($"Propina: {Propina}");
         //}
-        //#endregion
+        public static bool ValidarId(int id)
+        {
+            if (formadores.Count > 0)
+            {
+                foreach (Formador f in formadores)
+                { if (f.Id == id) return true; }
+            }
+            Console.WriteLine("Formador com id: " + id + " não encontrado");
+            return false;
+        }
+        public static bool Eliminar(int id)
+        {
+            foreach (Formador f in formadores)
+            {
+                if (f.Id == id)
+                {
+                    formadores.Remove(f);
+                    Console.WriteLine("Formador com id: " + id + " foi eliminado");
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
     }
 }

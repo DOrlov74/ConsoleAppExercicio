@@ -10,7 +10,7 @@ namespace ConsoleAppExercicio
     class Formando:Pessoa
     {
         #region Propriedades
-
+        public static List<Formando> formandos = new List<Formando>();
         public decimal Propina { get; set; }
         #endregion
         #region Métodos
@@ -41,6 +41,29 @@ namespace ConsoleAppExercicio
             else
             {
                 Console.WriteLine("Insira a Propina em formato xxxx.xx");
+            }
+            return false;
+        }
+        public static bool ValidarId(int id)
+        {
+            if (formandos.Count>0)
+            {
+                foreach (Formando f in formandos)
+                { if (f.Id == id) return true; }
+            }
+            Console.WriteLine("Formando com id: "+ id +" não encontrado");
+            return false;
+        }
+        public static bool Eliminar(int id)
+        {
+            foreach (Formando f in formandos)
+            {
+                if (f.Id == id)
+                {
+                    formandos.Remove(f);
+                    Console.WriteLine("Formando com id: " + id + " foi eliminado");
+                    return true; 
+                }
             }
             return false;
         }

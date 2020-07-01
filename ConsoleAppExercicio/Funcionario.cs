@@ -8,6 +8,7 @@ namespace ConsoleAppExercicio
     class Funcionario:Pessoa
     {
         #region Propriedades
+        public static List<Funcionario> funcionarios = new List<Funcionario>();
         public decimal Salario { get; set; }
         #endregion
         #region Métodos
@@ -36,6 +37,29 @@ namespace ConsoleAppExercicio
             else
             {
                 Console.WriteLine("Insira o valor do Salario em formato xxxx.xx");
+            }
+            return false;
+        }
+        public static bool ValidarId(int id)
+        {
+            if (funcionarios.Count > 0)
+            {
+                foreach (Funcionario f in funcionarios)
+                { if (f.Id == id) return true; }
+            }
+            Console.WriteLine("Funcionario com id: " + id + " não encontrado");
+            return false;
+        }
+        public static bool Eliminar(int id)
+        {
+            foreach (Funcionario f in funcionarios)
+            {
+                if (f.Id == id)
+                {
+                    funcionarios.Remove(f);
+                    Console.WriteLine("Funcionario com id: " + id + " foi eliminado");
+                    return true;
+                }
             }
             return false;
         }

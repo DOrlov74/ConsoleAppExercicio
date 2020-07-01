@@ -42,6 +42,7 @@ namespace ConsoleAppExercicio
         #region Métodos
         public virtual void PedirDados()
         {
+            Console.Clear();
             Console.WriteLine("Qual é o Nome?");
             do { Nome = Console.ReadLine(); }
             while (!validarNome(Nome));
@@ -72,7 +73,8 @@ namespace ConsoleAppExercicio
         }
         public virtual void MostrarDados()
         {
-            Console.WriteLine("As Dados:");
+            Console.WriteLine("Os Dados:");
+            Console.WriteLine($"Id: {Id}");
             Console.WriteLine($"Nome: {Nome}");
             Console.WriteLine($"Morada: {Morada}");
             Console.WriteLine($"Codigo Postal: {CodigoPostal}");
